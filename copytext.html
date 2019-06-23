@@ -1,0 +1,78 @@
+<html>
+    <title>
+        Copy Text
+    </title>
+    <style>
+        .outer-box{
+            background-color: rgb(97, 177, 152);
+            margin: auto;
+            width: 50%;
+            border: 2px solid green;
+            padding: 10px;
+            box-shadow:  5px 10px 4px #518885;
+            border-radius: 5px;
+        }
+        input[type=text],textarea{
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .button {
+            background-color: rgb(76, 175, 162); 
+            border-radius: 5px;
+            color: white;
+            border: 2px solid rgb(68, 71, 68);
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+    </style>
+    <body style=" padding: 140px 0;">
+        <div class="outer-box">
+            <div >
+                <input type="text" id="text-to-copy" placeholder="Enter text" />
+                <button class="button" id="copy-text">Copy</button>
+                <span id="copied-text" style="display: none;">Copied!</span>
+            </div>
+            
+            <div>
+                <textarea name="paste-area" id="paste-area" cols="30" rows="10" placeholder="Paste it here"></textarea>
+            </div>
+        </div>
+    </body>
+    <script>
+        document.getElementById('copy-text').addEventListener('click', function(e){
+        e.preventDefault();
+
+        // Select the text
+        document.getElementById('text-to-copy').select();
+
+        var copied;
+
+        try
+        {
+            // Copy the text
+            copied = document.execCommand('copy');
+        } 
+        catch (ex)
+        {
+            copied = false;  
+        }
+
+        if(copied)
+        {
+            // Display the copied text message
+            document.getElementById('copied-text').style.display = 'block';    
+        }
+
+        });
+    </script>
+</html>
